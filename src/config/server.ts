@@ -53,7 +53,9 @@ export const getServerConfig = () => {
 
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     OPENAI_PROXY_URL: process.env.OPENAI_PROXY_URL,
+
     CHAT_BASE_API: process.env.CHAT_BASE_API,
+    
     OPENAI_FUNCTION_REGIONS: regions,
 
     AZURE_API_KEY: process.env.AZURE_API_KEY,
