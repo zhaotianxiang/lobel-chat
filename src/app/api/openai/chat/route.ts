@@ -15,9 +15,11 @@ export const POST = async (req: Request) => {
   // if resOrOpenAI is a Response, it means there is an error,just return it
   if (openaiOrErrResponse instanceof Response) return openaiOrErrResponse;
 
-  console.log("======================================================================================")
+  console.log(
+    '======================================================================================',
+  );
 
-  console.log("request payload\n", payload)
+  console.log('request payload\n', payload);
 
   return createChatCompletion({ openai: openaiOrErrResponse, payload });
 };

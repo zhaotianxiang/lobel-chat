@@ -1,13 +1,11 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import OpenAI from 'openai';
 
-
 import { ChatErrorType } from '@/types/fetch';
 import { OpenAIChatStreamPayload } from '@/types/openai/chat';
 
 import { createErrorResponse } from '../errorResponse';
 import { desensitizeUrl } from './desensitizeUrl';
-
 
 interface CreateChatCompletionOptions {
   openai: OpenAI;
@@ -29,11 +27,11 @@ export const createChatCompletion = async ({ payload, openai }: CreateChatComple
       } as unknown as OpenAI.ChatCompletionCreateParamsStreaming,
       { headers: { Accept: '*/*' } },
     );
-    console.log("============================\nbody", {
+    console.log('============================\nbody', {
       messages,
       ...params,
       stream: true,
-    })
+    });
     const stream = OpenAIStream(response);
     return new StreamingTextResponse(stream);
   } catch (error) {
@@ -82,26 +80,26 @@ export const createChatCompletion = async ({ payload, openai }: CreateChatComple
   }
 };
 
-
-
-export const createQwenChatCompletion = async ({ payload, openai }: CreateChatCompletionOptions) => {
+export const createQwenChatCompletion = async ({
+  payload,
+  openai,
+}: CreateChatCompletionOptions) => {
   // ============  1. preprocess messages   ============ //
   const { messages, ...params } = payload;
 
   // ============  2. send api   ============ //
 
   try {
-    const response = await fetch("http://localhost:8080/api/qwen/chat/completions",{
-        body: JSON.stringify({
-          messages,
-          ...params,
-        }),
-        headers: {
-          'content-type': 'application/json;charset=UTF-8',
-        },
-        method:"POST",
+    const response = await fetch('http://localhost:8080/api/qwen/chat/completions', {
+      body: JSON.stringify({
+        messages,
+        ...params,
+      }),
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
       },
-    );
+      method: 'POST',
+    });
     return new StreamingTextResponse(response.body!);
   } catch (error) {
     let desensitizedEndpoint = openai.baseURL;
