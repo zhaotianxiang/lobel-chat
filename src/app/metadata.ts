@@ -21,18 +21,18 @@ const metadata: Metadata = {
   openGraph: {
     description: description,
     images: [
-      {
-        alt: title,
-        height: 360,
-        url: 'https://registry.npmmirror.com/@lobehub/assets-favicons/latest/files/assets/og-480x270.png',
-        width: 480,
-      },
-      {
-        alt: title,
-        height: 720,
-        url: 'https://registry.npmmirror.com/@lobehub/assets-favicons/latest/files/assets/og-960x540.png',
-        width: 960,
-      },
+      // {
+      //   alt: title,
+      //   height: 360,
+      //   url: 'https://registry.npmmirror.com/@lobehub/assets-favicons/latest/files/assets/og-480x270.png',
+      //   width: 480,
+      // },
+      // {
+      //   alt: title,
+      //   height: 720,
+      //   url: 'https://registry.npmmirror.com/@lobehub/assets-favicons/latest/files/assets/og-960x540.png',
+      //   width: 960,
+      // },
     ],
     locale: 'en-US',
     siteName: title,

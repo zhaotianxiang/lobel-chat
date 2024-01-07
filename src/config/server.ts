@@ -10,6 +10,8 @@ declare global {
       OPENAI_API_KEY?: string;
       OPENAI_PROXY_URL?: string;
 
+      CHAT_BASE_API?: string;
+
       AZURE_API_KEY?: string;
       AZURE_API_VERSION?: string;
       USE_AZURE_OPENAI?: string;
@@ -41,6 +43,8 @@ export const getServerConfig = () => {
 
   const ACCESS_CODES = process.env.ACCESS_CODE?.split(',').filter(Boolean) || [];
 
+  console.log("process.env.CHAT_BASE_API", process.env.CHAT_BASE_API)
+
   return {
     ACCESS_CODES,
     CUSTOM_MODELS: process.env.CUSTOM_MODELS,
@@ -49,9 +53,7 @@ export const getServerConfig = () => {
 
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     OPENAI_PROXY_URL: process.env.OPENAI_PROXY_URL,
-    CHAT_BASE_API: process.env.CHAT_BASE_API
-      ? process.env.CHAT_BASE_API
-      : 'http://localhost:8080/api/qwen/chat/completions',
+    CHAT_BASE_API: process.env.CHAT_BASE_API,
     OPENAI_FUNCTION_REGIONS: regions,
 
     AZURE_API_KEY: process.env.AZURE_API_KEY,
