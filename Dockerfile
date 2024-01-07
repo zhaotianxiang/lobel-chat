@@ -31,7 +31,7 @@ RUN pnpm run build:docker # run build standalone for docker version
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -68,5 +68,6 @@ ENV OPENAI_PROXY_URL ""
 ENV USE_AZURE_OPENAI ""
 ENV AZURE_API_KEY ""
 ENV AZURE_API_VERSION ""
+ENV CHAT_BASE_API "http://localhost:8080/api/qwen/chat/completions"
 
 CMD ["node", "server.js"]

@@ -1,6 +1,5 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import OpenAI from 'openai';
-import axios, { AxiosResponse } from 'axios'
 
 
 import { ChatErrorType } from '@/types/fetch';
@@ -93,14 +92,14 @@ export const createQwenChatCompletion = async ({ payload, openai }: CreateChatCo
 
   try {
     const response = await fetch("http://localhost:8080/api/qwen/chat/completions",{
-        method:"POST",
-        headers: {
-          'content-type': 'application/json;charset=UTF-8',
-        },
         body: JSON.stringify({
           messages,
           ...params,
         }),
+        headers: {
+          'content-type': 'application/json;charset=UTF-8',
+        },
+        method:"POST",
       },
     );
     return new StreamingTextResponse(response.body!);
