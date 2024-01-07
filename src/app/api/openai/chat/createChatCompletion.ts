@@ -1,5 +1,6 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import OpenAI from 'openai';
+import { getServerConfig } from '@/config/server';
 
 import { ChatErrorType } from '@/types/fetch';
 import { OpenAIChatStreamPayload } from '@/types/openai/chat';
@@ -89,8 +90,10 @@ export const createQwenChatCompletion = async ({
 
   // ============  2. send api   ============ //
 
+  const { CHAT_BASE_API } = getServerConfig()
+
   try {
-    const response = await fetch('http://localhost:8080/api/qwen/chat/completions', {
+    const response = await fetch(CHAT_BASE_API, {
       body: JSON.stringify({
         messages,
         ...params,
